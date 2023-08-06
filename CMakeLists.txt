@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(PiUi VERSION 1.0.0 LANGUAGES CXX)
+project(PiUi VERSION 1.0.0 LANGUAGES CXX C)
 
 add_executable(PiUi)
 
@@ -29,6 +29,12 @@ endif()
 
 target_sources(PiUi PRIVATE
 	"${SRC_DIR}/Main.cpp"
+
+	"${SRC_DIR}/../dependencies/glad/src/glad.c"
+)
+
+target_include_directories(PiUi PRIVATE
+	"dependencies/glad/include/"
 )
 
 target_link_libraries(PiUi PRIVATE
