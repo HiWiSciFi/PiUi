@@ -29,14 +29,17 @@ endif()
 
 target_sources(PiUi PRIVATE
 	"${SRC_DIR}/Main.cpp"
-
-	"${SRC_DIR}/../dependencies/glad/src/glad.c"
-)
-
-target_include_directories(PiUi PRIVATE
-	"dependencies/glad/include/"
 )
 
 target_link_libraries(PiUi PRIVATE
 	"${GLFW_LIBRARY}"
 )
+
+if (UNIX)
+
+target_link_libraries(PiUi PRIVATE
+	"EGL"
+	"GLESv2"
+)
+
+endif (UNIX)
