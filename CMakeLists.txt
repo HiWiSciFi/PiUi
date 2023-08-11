@@ -5,6 +5,8 @@ project(PiUi VERSION 1.0.0 LANGUAGES CXX C)
 add_executable(PiUi)
 
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(RES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
+set(DEPENDENCIES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dependencies")
 set(OUTPUT_DIR "${PROJECT_BINARY_DIR}/PiUi")
 
 set_target_properties(PiUi PROPERTIES
@@ -14,6 +16,10 @@ set_target_properties(PiUi PROPERTIES
 	RUNTIME_OUTPUT_DIRECTIRY_RELEASE "${OUTPUT_DIR}/Release"
 	FOLDER "PiUi"
 )
+
+# glm
+add_subdirectory("dependencies/glm")
+set_property(TARGET glm PROPERTY FOLDER "PiUi/dependencies/glm")
 
 # GLFW
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
@@ -28,17 +34,56 @@ if (TARGET update_mappings)
 endif()
 
 target_sources(PiUi PRIVATE
+	"${SRC_DIR}/FileSystem.cpp"
+	"${SRC_DIR}/Gamepad.cpp"
 	"${SRC_DIR}/Main.cpp"
+	"${SRC_DIR}/Material.cpp"
+	"${SRC_DIR}/Quad.cpp"
+)
+
+target_include_directories(PiUi PRIVATE
+	"${DEPENDENCIES_DIR}/glm/"
 )
 
 target_link_libraries(PiUi PRIVATE
 	"${GLFW_LIBRARY}"
+	"glm"
 )
+
+add_custom_target(PiUiResources
+	${CMAKE_COMMAND} -E remove_directory
+		"${OUTPUT_DIR}/$<CONFIG>/res"
+	COMMAND ${CMAKE_COMMAND} -E make_directory
+		"${OUTPUT_DIR}/$<CONFIG>/res"
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different
+		"${RES_DIR}/background.vert.glsl"
+		"${RES_DIR}/background.frag.glsl"
+		"${OUTPUT_DIR}/$<CONFIG>/res/"
+	COMMENT "Copying resource files for PiUi" VERBATIM
+)
+
+target_sources(PiUiResources PRIVATE
+	"${RES_DIR}/background.vert.glsl"
+	"${RES_DIR}/background.frag.glsl"
+)
+
+add_dependencies(PiUi PiUiResources)
+
+if (WIN32)
+
+target_sources(PiUi PRIVATE
+	"${DEPENDENCIES_DIR}/glad/src/glad.c"
+)
+
+target_include_directories(PiUi PRIVATE
+	"${DEPENDENCIES_DIR}/glad/include/"
+)
+
+endif (WIN32)
 
 if (UNIX)
 
 target_link_libraries(PiUi PRIVATE
-	"EGL"
 	"GLESv2"
 )
 
