@@ -81,7 +81,7 @@ Gamepad& Gamepad::Get(int id) {
 }
 
 bool Gamepad::Any::GetButton(Facebutton button) {
-	for (size_t i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
+	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		if (gamepads[i].GetButton(button)) {
 			return true;
 		}
@@ -90,7 +90,7 @@ bool Gamepad::Any::GetButton(Facebutton button) {
 }
 
 bool Gamepad::Any::GetButton(Menubutton button) {
-	for (size_t i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
+	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		if (gamepads[i].GetButton(button)) {
 			return true;
 		}
@@ -99,7 +99,7 @@ bool Gamepad::Any::GetButton(Menubutton button) {
 }
 
 bool Gamepad::Any::GetButton(DPad button) {
-	for (size_t i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
+	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		if (gamepads[i].GetButton(button)) {
 			return true;
 		}
@@ -108,7 +108,7 @@ bool Gamepad::Any::GetButton(DPad button) {
 }
 
 bool Gamepad::Any::GetButton(Joystick button) {
-	for (size_t i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
+	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		if (gamepads[i].GetButton(button)) {
 			return true;
 		}
@@ -117,7 +117,7 @@ bool Gamepad::Any::GetButton(Joystick button) {
 }
 
 bool Gamepad::Any::GetButton(Bumper button) {
-	for (size_t i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
+	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		if (gamepads[i].GetButton(button)) {
 			return true;
 		}
@@ -128,14 +128,14 @@ bool Gamepad::Any::GetButton(Bumper button) {
 void Gamepad::Init() {
 	glfwSetJoystickCallback(JoystickConnectedCallback);
 
-	for (size_t i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
+	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		gamepads[i] = Gamepad(i);
 		glfwSetJoystickUserPointer(i, &(gamepads[i]));
 	}
 }
 
 void Gamepad::UpdateAll() {
-	for (size_t i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
+	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		gamepads[i].Update();
 	}
 }

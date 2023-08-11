@@ -60,11 +60,9 @@ add_custom_target(PiUiResources
 		"${RES_DIR}/background.frag.glsl"
 		"${OUTPUT_DIR}/$<CONFIG>/res/"
 	COMMENT "Copying resource files for PiUi" VERBATIM
-)
-
-target_sources(PiUiResources PRIVATE
-	"${RES_DIR}/background.vert.glsl"
-	"${RES_DIR}/background.frag.glsl"
+	SOURCES
+		"${RES_DIR}/background.vert.glsl"
+		"${RES_DIR}/background.frag.glsl"
 )
 
 add_dependencies(PiUi PiUiResources)
