@@ -5,11 +5,11 @@
 
 class Quad final {
 private:
-	unsigned int vertexArray;
-	unsigned int vertexBuffer;
-	unsigned int uvBuffer;
-	unsigned int indexBuffer;
-	Material* material;
+	unsigned int vertexArray = 0;
+	unsigned int vertexBuffer = 0;
+	unsigned int uvBuffer = 0;
+	unsigned int indexBuffer = 0;
+	Material* material = nullptr;
 
 public:
 	Quad(Material* material, glm::fvec2 position, glm::fvec2 size, float depth);

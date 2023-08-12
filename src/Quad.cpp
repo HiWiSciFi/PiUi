@@ -29,23 +29,18 @@ Quad::Quad(Material* material, glm::fvec2 position, glm::fvec2 size, float depth
 	glGenBuffers(1, &vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 	glEnableVertexAttribArray(0);
-	glVertexAttribBinding(0, 0);
-	glVertexAttribFormat(0, 3, GL_FLOAT, GL_FALSE, 0);
-	glBindVertexBuffer(0, vertexBuffer, 0, 3 * sizeof(float));
 
 	glGenBuffers(1, &uvBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
 	glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(float), uvs.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), nullptr);
 	glEnableVertexAttribArray(1);
-	glVertexAttribBinding(1, 1);
-	glVertexAttribFormat(1, 2, GL_FLOAT, GL_FALSE, 0);
-	glBindVertexBuffer(1, uvBuffer, 0, 2 * sizeof(float));
 
 	glGenBuffers(1, &indexBuffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), indices.data(), GL_STATIC_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
 }
 
 Quad::~Quad() {
@@ -60,7 +55,7 @@ void Quad::SetMaterial(Material* material) {
 }
 
 void Quad::Draw() {
-	glBindVertexArray(vertexArray);
 	material->Bind();
+	glBindVertexArray(vertexArray);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 }
