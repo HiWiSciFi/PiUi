@@ -34,6 +34,8 @@ target_sources(PiUi PRIVATE
 	"${SRC_DIR}/Main.cpp"
 	"${SRC_DIR}/Material.cpp"
 	"${SRC_DIR}/Quad.cpp"
+
+	"${SRC_DIR}/opengl.c"
 )
 
 target_include_directories(PiUi PRIVATE

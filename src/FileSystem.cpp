@@ -21,9 +21,9 @@ std::string FileSystem::ReadFileContents(const std::string& path) {
 	return ss.str();
 }
 
-std::string FileSystem::GetExecutablePath() {
+FileSystem::ExecutablePath FileSystem::GetExecutablePath() {
 	static bool pathFound = false;
-	static std::string path;
+	static ExecutablePath path{ };
 
 	if (!pathFound) [[unlikely]] {
 		std::vector<char> pathBuffer(256);
@@ -45,8 +45,39 @@ std::string FileSystem::GetExecutablePath() {
 		}
 #endif
 
-		path.assign(pathBuffer.data());
+		std::string pathstr(pathBuffer.data());
+		size_t lastSeparator = pathstr.find_last_of("/\\");
+		path.name = pathstr.substr(lastSeparator + 1);
+		path.directory = pathstr.substr(0, lastSeparator);
 	}
 
 	return path;
+}
+
+FileSystem::ExecutablePath::ExecutablePath()
+	: name(), directory() { }
+
+FileSystem::ExecutablePath::~ExecutablePath() { }
+
+FileSystem::ExecutablePath::ExecutablePath(const ExecutablePath& other)
+	: name(other.name), directory(other.directory) { }
+
+FileSystem::ExecutablePath::ExecutablePath(ExecutablePath&& other) noexcept {
+	*this = std::move(other);
+}
+
+FileSystem::ExecutablePath& FileSystem::ExecutablePath::operator=(const ExecutablePath& other) {
+	if (this != &other) {
+		name = other.name;
+		directory = other.directory;
+	}
+	return *this;
+}
+
+FileSystem::ExecutablePath& FileSystem::ExecutablePath::operator=(ExecutablePath&& other) noexcept {
+	if (this != &other) {
+		name = std::move(other.name);
+		directory = std::move(other.directory);
+	}
+	return *this;
 }

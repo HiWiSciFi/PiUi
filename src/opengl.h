@@ -4,4 +4,12 @@
 	#include <glad/glad.h>
 #endif
 
-void HandleGLErrors();
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	void HandleGLErrors();
+
+#ifdef __cplusplus
+}
+#endif
