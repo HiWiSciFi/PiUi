@@ -91,6 +91,7 @@ int main() {
 
 		if (Gamepad::Any::GetButton(Gamepad::Facebutton::A)) {
 			foreground.Draw();
+			std::cout << "A Pressed" << std::endl;
 		}
 
 		glfwSwapBuffers(window);
