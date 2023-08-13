@@ -30,6 +30,7 @@ set(GLFW_LIBRARY "glfw")
 
 target_sources(PiUi PRIVATE
 	"${SRC_DIR}/FileSystem.cpp"
+	"${SRC_DIR}/Gamecontroller.cpp"
 	"${SRC_DIR}/Gamepad.cpp"
 	"${SRC_DIR}/Main.cpp"
 	"${SRC_DIR}/Material.cpp"

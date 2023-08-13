@@ -17,14 +17,14 @@ void Gamepad::JoystickConnectedCallback(int jid, int event) {
 	if (gamepads[jid].connected) gamepads[jid].Update();
 	std::cout << "Joystick \"" << glfwGetJoystickName(jid) << "\" " << glfwGetJoystickGUID(jid) << " " << (event == GLFW_CONNECTED ? "connected" : "disconnected") << " Gamepad: " << (glfwJoystickIsGamepad(jid) ? "true " : "false") << std::endl;
 
-	int buttonCount;
-	while (true) {
-		const unsigned char* buttonStates = glfwGetJoystickButtons(jid, &buttonCount);
-		for (int i = 0; i < buttonCount; i++) {
-			std::cout << (buttonStates[i] == GLFW_PRESS ? "1" : "0");
-		}
-		std::cout << std::endl;
-	}
+	//int buttonCount; // gamepad: 15 buttons
+	//while (true) {
+	//	const unsigned char* buttonStates = glfwGetJoystickButtons(jid, &buttonCount);
+	//	for (int i = 0; i < buttonCount; i++) {
+	//		std::cout << (buttonStates[i] == GLFW_PRESS ? "1" : "0");
+	//	}
+	//	std::cout << std::endl;
+	//}
 }
 
 Gamepad::~Gamepad() {
