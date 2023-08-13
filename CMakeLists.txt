@@ -60,6 +60,7 @@ add_custom_target(PiUiResources
 	SOURCES
 		"${RES_DIR}/background.vert.glsl"
 		"${RES_DIR}/background.frag.glsl"
+		"${RES_DIR}/gamecontrollerdb.txt"
 )
 
 add_dependencies(PiUi PiUiResources)

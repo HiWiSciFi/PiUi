@@ -126,8 +126,13 @@ bool Gamepad::Any::GetButton(Bumper button) {
 	return false;
 }
 
+#include "FileSystem.hpp"
+
 void Gamepad::Init() {
 	glfwSetJoystickCallback(JoystickConnectedCallback);
+	std::string gamecontrollerdb = FileSystem::ReadFileContents("res/gamecontrollerdb.txt");
+	if (glfwUpdateGamepadMappings(gamecontrollerdb.c_str()) != GLFW_TRUE)
+		std::cerr << "Error updating controller mappings" << std::endl;
 
 	for (int i = 0; i < GLFW_MAX_JOYSTICK_COUNT; i++) {
 		gamepads[i] = Gamepad(i);
