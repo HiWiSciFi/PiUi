@@ -43,6 +43,7 @@ int main() {
 	gladLoadGLES2Loader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
 #endif
 	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+	glViewport(0, 0, videoMode->width, videoMode->height);
 
 	glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 		if (key == GLFW_KEY_ESCAPE) glfwSetWindowShouldClose(window, GLFW_TRUE);
