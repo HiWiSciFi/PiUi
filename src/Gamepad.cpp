@@ -15,7 +15,9 @@ Gamepad::Gamepad(int id) : id(id), state() {
 void Gamepad::JoystickConnectedCallback(int jid, int event) {
 	gamepads[jid].connected = (event == GLFW_CONNECTED) && glfwJoystickIsGamepad(jid);
 	if (gamepads[jid].connected) gamepads[jid].Update();
-	std::cout << "Joystick " << (event == GLFW_CONNECTED ? "connected" : "disconnected") << " Gamepad: " << (glfwJoystickIsGamepad(jid) ? "true " : "false") << std::endl;
+	std::cout << "Joystick \"" << glfwGetGamepadName(jid) << "\" " << (event == GLFW_CONNECTED ? "connected" : "disconnected") << " Gamepad: " << (glfwJoystickIsGamepad(jid) ? "true " : "false") << std::endl;
+
+	glfwGetGamepadName(jid);
 }
 
 Gamepad::~Gamepad() {
@@ -125,8 +127,6 @@ bool Gamepad::Any::GetButton(Bumper button) {
 	}
 	return false;
 }
-
-#include "FileSystem.hpp"
 
 void Gamepad::Init() {
 	glfwSetJoystickCallback(JoystickConnectedCallback);
