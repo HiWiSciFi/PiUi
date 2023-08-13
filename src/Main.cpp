@@ -24,6 +24,9 @@ void HandleGLErrors() {
 }
 
 int main() {
+	// Path test code
+	std::cout << "Path: " << FileSystem::GetExecutablePath() << std::endl;
+
 	glfwInit();
 	Gamepad::Init();
 
