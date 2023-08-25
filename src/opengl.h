@@ -1,8 +1,4 @@
-#ifndef _WIN32
-	#include <GLES3/gl3.h>
-#else
-	#include <glad/glad.h>
-#endif
+#include <GLES3/gl3.h>
 
 #ifdef __cplusplus
 extern "C" {
