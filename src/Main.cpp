@@ -5,7 +5,26 @@
 #include "Material.hpp"
 #include "Quad.hpp"
 
+#include <linux/fb.h>
+#include <sys/ioctl.h>
+
 int main() {
+
+	// framebuffer test
+	int fbfd = 0;
+	struct fb_var_screeninfo var_info;
+	fbfd = open("/dev/fb0", O_RDWR);
+	if (fbfd == -1) {
+		std::cout << "Error: cannot open framebuffer" << std::endl;
+		return 1;
+	}
+	std::cout << "Framebuffer opened" << std::endl;
+	if (ioctl(fbfd, FBIOGET_VSCREENINFO. & var_info)) {
+		std::cout << "Error reading variable screen info" << std::endl;
+	}
+	std::cout << "Display info:\n\t" << var_info.xres << "x" << var_info.yres << " " << var_info.bits_per_pixel << std::endl;
+	close(fbfd);
+
 	// Path test code
 	FileSystem::ExecutablePath exePath = FileSystem::GetExecutablePath();
 	std::cout << "Path:\n\t" << exePath.directory << "\n\t" << exePath.name << std::endl;
