@@ -15,7 +15,7 @@ int main() {
 	std::cout << "Path:\n\t" << exePath.directory << "\n\t" << exePath.name << std::endl;
 
 	sync();
-	syscall(SYS_reboot, LINUX_REBOOT_MAGIC_1, LINUX_REBOOT_MAGIC_2, LINUX_REBOOT_CMD_RESTART, nullptr);
+	syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART, nullptr);
 
 //	glfwInit();
 //	Gamepad::Init();
