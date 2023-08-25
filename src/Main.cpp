@@ -10,8 +10,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include <directfb/directfb.h>
-#include <directfb/directfbgl.h>
+#include <directfb.h>
+#include <directfbgl.h>
 
 int main() {
 
