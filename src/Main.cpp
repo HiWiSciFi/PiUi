@@ -2,7 +2,6 @@
 //#include <GLFW/glfw3.h>
 #include <iostream>
 #include "FileSystem.hpp"
-#include "Gamepad.hpp"
 #include "Material.hpp"
 #include "Quad.hpp"
 
