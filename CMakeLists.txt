@@ -32,13 +32,11 @@ target_sources(PiUi PRIVATE
 
 target_include_directories(PiUi PRIVATE
 	"${DEPENDENCIES_DIR}/glm/"
-	"/usr/include/directfb/"
 )
 
 target_link_libraries(PiUi PRIVATE
 	"glm"
 	"GLESv2"
-	"directfb"
 )
 
 add_custom_target(PiUiResources
