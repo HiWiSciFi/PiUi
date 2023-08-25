@@ -1,11 +1,10 @@
 #include "Gamecontroller.hpp"
-#include <GLFW/glfw3.h>
 #include <vector>
 
 static std::vector<Gamecontroller> controllers{ };
 
 void Gamecontroller::Init() {
-	glfwSetJoystickCallback(Gamecontroller::ConnectedCallback);
+
 }
 
 void Gamecontroller::PollAll() {

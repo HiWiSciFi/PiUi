@@ -20,18 +20,9 @@ set_target_properties(PiUi PROPERTIES
 # glm
 add_subdirectory("dependencies/glm")
 
-# GLFW
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
-add_subdirectory("dependencies/GLFW")
-set(GLFW_LIBRARY "glfw")
-
 target_sources(PiUi PRIVATE
 	"${SRC_DIR}/FileSystem.cpp"
 	"${SRC_DIR}/Gamecontroller.cpp"
-	"${SRC_DIR}/Gamepad.cpp"
 	"${SRC_DIR}/Main.cpp"
 	"${SRC_DIR}/Material.cpp"
 	"${SRC_DIR}/Quad.cpp"
@@ -65,22 +56,6 @@ add_custom_target(PiUiResources
 
 add_dependencies(PiUi PiUiResources)
 
-if (WIN32)
-
-target_sources(PiUi PRIVATE
-	"${DEPENDENCIES_DIR}/glad/src/glad.c"
-)
-
-target_include_directories(PiUi PRIVATE
-	"${DEPENDENCIES_DIR}/glad/include/"
-)
-
-endif (WIN32)
-
-if (UNIX)
-
 target_link_libraries(PiUi PRIVATE
 	"GLESv2"
 )
-
-endif (UNIX)
