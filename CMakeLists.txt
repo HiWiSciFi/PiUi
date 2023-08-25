@@ -58,4 +58,5 @@ add_dependencies(PiUi PiUiResources)
 
 target_link_libraries(PiUi PRIVATE
 	"GLESv2"
+	"directfb"
 )

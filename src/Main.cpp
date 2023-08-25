@@ -10,6 +10,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include <directfb.h>
+#include <directfbgl.h>
+
 int main() {
 
 	// framebuffer test
