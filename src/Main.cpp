@@ -8,6 +8,7 @@
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 int main() {
 
@@ -20,7 +21,7 @@ int main() {
 		return 1;
 	}
 	std::cout << "Framebuffer opened" << std::endl;
-	if (ioctl(fbfd, FBIOGET_VSCREENINFO. & var_info)) {
+	if (ioctl(fbfd, FBIOGET_VSCREENINFO, & var_info)) {
 		std::cout << "Error reading variable screen info" << std::endl;
 	}
 	std::cout << "Display info:\n\t" << var_info.xres << "x" << var_info.yres << " " << var_info.bits_per_pixel << std::endl;
