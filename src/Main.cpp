@@ -7,6 +7,7 @@
 #include <linux/reboot.h>
 #include <sys/syscall.h>
 #include <unistd.h>
+#include <errno.h>
 
 int main() {
 
@@ -17,6 +18,7 @@ int main() {
 	sync();
 	if (syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART, nullptr) != 0) {
 		std::cout << "Failed" << std::endl;
+		perror("syscall");
 	}
 
 //	glfwInit();
