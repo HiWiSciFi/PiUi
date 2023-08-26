@@ -20,6 +20,8 @@ int main() {
 		std::cout << "Failed" << std::endl;
 		perror("syscall");
 	}
+	sleep(5);
+	system("reboot");
 
 //	glfwInit();
 //	Gamepad::Init();
