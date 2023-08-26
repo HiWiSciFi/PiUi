@@ -15,10 +15,7 @@ int main() {
 	FileSystem::ExecutablePath exePath = FileSystem::GetExecutablePath();
 	std::cout << "Path:\n\t" << exePath.directory << "\n\t" << exePath.name << std::endl;
 
-	if (sync() != 0) {
-		std::cout << "Sync failed" << std::endl;
-		perror("sync");
-	}
+	sync();
 	system("reboot");
 
 //	glfwInit();
