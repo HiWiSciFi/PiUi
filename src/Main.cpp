@@ -16,10 +16,10 @@ int main() {
 	std::cout << "Path:\n\t" << exePath.directory << "\n\t" << exePath.name << std::endl;
 
 	sync();
-	if (syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART, nullptr) != 0) {
+	/*if (syscall(SYS_reboot, LINUX_REBOOT_MAGIC1, LINUX_REBOOT_MAGIC2, LINUX_REBOOT_CMD_RESTART, nullptr) != 0) {
 		std::cout << "Failed" << std::endl;
 		perror("syscall");
-	}
+	}*/
 	sleep(5);
 	system("reboot");
 
