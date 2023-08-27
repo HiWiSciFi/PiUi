@@ -44,11 +44,13 @@ target_sources(PiUi PRIVATE
 
 target_include_directories(PiUi PRIVATE
 	"${DEPENDENCIES_DIR}/glm/"
+	"${DEPENDENCIES_DIR}/glfw/include/"
 )
 
 target_link_libraries(PiUi PRIVATE
 	"glm"
 	"GLESv2"
+	"${GLFW_LIBRARY}"
 )
 
 add_custom_target(PiUiResources

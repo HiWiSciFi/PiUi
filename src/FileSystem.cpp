@@ -19,7 +19,7 @@ FileSystem::ExecutablePath FileSystem::GetExecutablePath() {
 	static bool pathFound = false;
 	static ExecutablePath path{ };
 
-	if (!pathFound) [[unlikely]] {
+	if (!pathFound) {
 		std::vector<char> pathBuffer(256);
 
 		size_t length;
