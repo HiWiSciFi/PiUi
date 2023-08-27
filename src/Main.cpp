@@ -15,8 +15,8 @@ int main() {
 	FileSystem::ExecutablePath exePath = FileSystem::GetExecutablePath();
 	std::cout << "Path:\n\t" << exePath.directory << "\n\t" << exePath.name << std::endl;
 
-	sync();
-	system("reboot");
+	// sync();
+	// system("reboot");
 
 //	glfwInit();
 //	Gamepad::Init();

@@ -20,6 +20,18 @@ set_target_properties(PiUi PROPERTIES
 # glm
 add_subdirectory("dependencies/glm")
 
+# glfw
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+add_subdirectory("dependencies/glfw")
+set(GLFW_LIBRARY "glfw")
+set_property(TARGET glfw PROPERTY FOLDER "Junia/Dependencies/GLFW")
+if (TARGET update_mappings)
+	set_property(TARGET update_mappings PROPERTY FOLDER "Junia/Dependencies/GLFW")
+endif()
+
 target_sources(PiUi PRIVATE
 	"${SRC_DIR}/FileSystem.cpp"
 	"${SRC_DIR}/Gamecontroller.cpp"
