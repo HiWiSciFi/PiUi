@@ -2,22 +2,21 @@
 
 class Gamecontroller final {
 public:
-	enum class Button {
-		A           =  0,
-		B           =  1,
-		X           =  2,
-		Y           =  3,
-		LBUMPER     =  4,
-		RBUMPER     =  5,
-		BACK        =  6,
-		START       =  7,
-		GUIDE       =  8,
-		LSTICK      =  9,
-		RSTICK      = 10,
-		DUP         = 11,
-		DRIGHT      = 12,
-		DDOWN       = 13,
-		DLEFT       = 14
+	enum class Button { // XBOX Mapping
+		SOUTH   =  0,   // A
+		EAST    =  1,   // B
+		WEST    =  2,   // X
+		NORTH   =  3,   // Y
+
+		LBUMPER =  4,   // L1
+		RBUMPER =  5,   // R1
+
+		BACK    =  6,   // Back
+		START   =  7,   // Start
+		GUIDE   =  8,   // XBox
+
+		LTHUMB  =  9,   // LT
+		RTHUMB  = 10    // RT
 	};
 
 public:

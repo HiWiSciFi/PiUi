@@ -75,8 +75,8 @@ int main() {
 		glViewport(0, 0, width, height);
 	});
 
-	std::string vertexShaderCode = FileSystem::ReadFileContents("res/background.vert.glsl");
-	std::string fragmentShaderCode = FileSystem::ReadFileContents("res/background.frag.glsl");
+	std::string vertexShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/background.vert.glsl");
+	std::string fragmentShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/background.frag.glsl");
 	Material backgroundMaterial(vertexShaderCode, fragmentShaderCode);
 	Quad background(&backgroundMaterial, glm::fvec2(0.0f, 0.0f), glm::fvec2(1.0f, 1.0f), 1.0f);
 	Quad foreground(&backgroundMaterial, glm::fvec2(0.1f, 0.25f), glm::fvec2(0.1f, 0.5f), 0.9f);
