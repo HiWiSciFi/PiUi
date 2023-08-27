@@ -11,5 +11,5 @@ void main() {
 	vec3 lower = vec3(0.0, 0.0, 0.0);
 	vec3 mixed = mix(lower, upper, uv.y);
 
-	outColor = vec4(mixed, 1.0);
+	outColor = vec4(uv.y, 0.0, 1.0, 1.0);
 }
