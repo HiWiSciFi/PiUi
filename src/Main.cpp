@@ -76,12 +76,15 @@ int main() {
 		glViewport(0, 0, width, height);
 	});
 
-	std::string vertexShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/background.vert.glsl");
-	std::string fragmentShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/background.frag.glsl");
+	std::string vertexShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/base.vert.glsl");
+	std::string backgroundShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/background.frag.glsl");
+	std::string diffuseShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/diffuse.frag.glsl");
 	
-	Material backgroundMaterial(vertexShaderCode, fragmentShaderCode);
+	Material backgroundMaterial(vertexShaderCode, backgroundShaderCode);
+	Material topBarMaterial(vertexShaderCode, diffuseShaderCode);
+
 	Quad background(&backgroundMaterial, glm::fvec2(0.0f, 0.0888f), glm::fvec2(1.0f, 1.0f - 0.0888f), 1.0f);
-	Quad foreground(&backgroundMaterial, glm::fvec2(0.0f, 0.0f), glm::fvec2(1.0f, 0.0888f), 0.9f);
+	Quad foreground(&topBarMaterial, glm::fvec2(0.0f, 0.0f), glm::fvec2(1.0f, 0.0888f), 0.9f);
 
 	while (!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);

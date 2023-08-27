@@ -59,13 +59,15 @@ add_custom_target(PiUiResources
 	COMMAND ${CMAKE_COMMAND} -E make_directory
 		"${OUTPUT_DIR}/$<CONFIG>/res"
 	COMMAND ${CMAKE_COMMAND} -E copy_if_different
-		"${RES_DIR}/background.vert.glsl"
+		"${RES_DIR}/base.vert.glsl"
 		"${RES_DIR}/background.frag.glsl"
+		"${RES_DIR}/diffuse.frag.glsl"
 		"${OUTPUT_DIR}/$<CONFIG>/res/"
 	COMMENT "Copying resource files for PiUi" VERBATIM
 	SOURCES
-		"${RES_DIR}/background.vert.glsl"
+		"${RES_DIR}/base.vert.glsl"
 		"${RES_DIR}/background.frag.glsl"
+		"${RES_DIR}/diffuse.frag.glsl"
 )
 
 add_dependencies(PiUi PiUiResources)
