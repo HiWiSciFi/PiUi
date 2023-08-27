@@ -13,12 +13,6 @@
 
 int main() {
 
-	pid_t xsrv = fork();
-	if (xsrv != 0) {
-		system("startx");
-		return 0;
-	}
-
 	// Path test code
 	FileSystem::ExecutablePath exePath = FileSystem::GetExecutablePath();
 	std::cout << "Path:\n\t" << exePath.directory << "\n\t" << exePath.name << std::endl;
