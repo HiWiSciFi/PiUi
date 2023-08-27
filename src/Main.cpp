@@ -13,9 +13,8 @@
 
 int main() {
 
-	// Path test code
+	// Get Path
 	FileSystem::ExecutablePath exePath = FileSystem::GetExecutablePath();
-	std::cout << "Path:\n\t" << exePath.directory << "\n\t" << exePath.name << std::endl;
 
 	glfwInit();
 
@@ -59,11 +58,13 @@ int main() {
 	glfwWindowHintString(GLFW_X11_CLASS_NAME, "HiWiSciFi/GamePi");
 	glfwWindowHintString(GLFW_X11_INSTANCE_NAME, "HiWiSciFi/GamePi");
 
-	GLFWwindow* window = glfwCreateWindow(videoMode->width, videoMode->height, "Testwindow", monitor, nullptr);
+	GLFWwindow* window = glfwCreateWindow(800, 480, "Testwindow", nullptr, nullptr);
+	// GLFWwindow* window = glfwCreateWindow(videoMode->width, videoMode->height, "Testwindow", monitor, nullptr);
 	glfwMakeContextCurrent(window);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-	glViewport(0, 0, videoMode->width, videoMode->height);
+	glViewport(0, 0, 800, 480);
+	// glViewport(0, 0, videoMode->width, videoMode->height);
 	HandleGLErrors();
 	glfwShowWindow(window);
 
@@ -77,15 +78,17 @@ int main() {
 
 	std::string vertexShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/background.vert.glsl");
 	std::string fragmentShaderCode = FileSystem::ReadFileContents(exePath.directory + "/res/background.frag.glsl");
+	
 	Material backgroundMaterial(vertexShaderCode, fragmentShaderCode);
-	Quad background(&backgroundMaterial, glm::fvec2(0.0f, 0.0f), glm::fvec2(1.0f, 1.0f), 1.0f);
-	Quad foreground(&backgroundMaterial, glm::fvec2(0.1f, 0.25f), glm::fvec2(0.1f, 0.5f), 0.9f);
+	Quad background(&backgroundMaterial, glm::fvec2(0.0f, 0.0888f), glm::fvec2(1.0f, 1.0f - 0.0888f), 1.0f);
+	Quad foreground(&backgroundMaterial, glm::fvec2(0.0f, 0.0f), glm::fvec2(1.0f, 0.0888f), 0.9f);
 
 	while (!glfwWindowShouldClose(window)) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// render
 		background.Draw();
+		foreground.Draw();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
