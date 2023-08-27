@@ -91,7 +91,9 @@ int main() {
 
 		// render
 		background.Draw();
-		foreground.Draw();
+
+		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) != GLFW_PRESS)
+			foreground.Draw();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
